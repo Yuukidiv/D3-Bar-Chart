@@ -6,7 +6,7 @@ function App() {
     // Metodo per estrarre i dati da API
     React.useEffect(() => {
         async function fetchData() {
-            const response = await fetch("https://disease.sh/v3/covid-19/countries?sort=casesPerOneMillion");
+            const response = await fetch("https://disease.sh/v3/covid-19/countries");
             const data = await response.json();
             setCountryData(data);
         }
@@ -36,6 +36,7 @@ function BarChart({data, height, width, widthOfBar, dataType}) {
     const createBarChart = () => {
         const countryData = data.map((country) => country["casesPerOneMillion"]);
         const countries = data.map((country) => country.country);
+        
         let tooltip = d3.select("visHolder")
                             .append("div")
                             .attr("id", "tooltip")
