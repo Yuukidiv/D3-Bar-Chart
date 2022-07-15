@@ -64,9 +64,20 @@ function BarChart({data, height, width, widthOfBar, dataType}) {
                 .html(countries[i] + `<br/> ${dataType}: ` + d)
                 .style("left", i * widthOfBar + 20 + "px")
                 .style("top", d3.event.pageY - 170 + "px");
+
+                const xAxis = d3.axisBottom(xScale);
+    
+                const yAxis = d3.axisLeft(yScale);
+                
+                svg.append("g")
+                .attr("transform", "translate(0)")
+                .call(xAxis);
+                svg.append("g")
+                .attr("transform", "translate(0)")
+                .call(yAxis)
             });
 
-    }  ;
+    };
 
     return (
         <svg width={width} height={height}></svg>
